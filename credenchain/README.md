@@ -58,3 +58,8 @@ Credenchain is a decentralized application (dApp) built with Next.js that enable
    - Fill out the "Create Certificate" form with the required details (e.g., student name, course, completion date).
    - Submit the form and sign the transaction using the Freighter wallet extension.
    - Once the transaction is successfully mined, the certificate data is stored in the database and anchored on the Stellar blockchain.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
