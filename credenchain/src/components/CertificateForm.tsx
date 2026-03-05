@@ -122,38 +122,111 @@ export default function CertificateForm() {
     };
 
     return (
-        <div className="w-full max-w-md mx-auto mt-8 bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-            <h2 className="text-xl font-semibold mb-4 text-gray-800">Yeni Sertifika Oluştur</h2>
+        <div className="w-full bg-white dark:bg-zinc-950 p-8 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.2)] border border-gray-100 dark:border-white/5 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-500/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:bg-indigo-500/10 transition-colors" />
 
-            <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Input alanlarımız aynı şekilde kalıyor */}
+            <div className="relative z-10 space-y-8">
                 <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Eğitim/Sertifika Adı</label>
-                    <input type="text" name="title" value={formData.title} onChange={handleChange} required className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder-gray-400" placeholder="Örn: İleri Düzey React Eğitimi" />
-                </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Veren Kurum (Issuer)</label>
-                    <input type="text" name="issuerName" value={formData.issuerName} onChange={handleChange} required className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder-gray-400" placeholder="Örn: Tech Academy" />
-                </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Alıcı Adı Soyadı</label>
-                    <input type="text" name="recipientName" value={formData.recipientName} onChange={handleChange} required className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder-gray-400" placeholder="Örn: Ali Yılmaz" />
-                </div>
-                <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Alıcı Cüzdan Adresi (G...)</label>
-                    <input type="text" name="recipientWallet" value={formData.recipientWallet} onChange={handleChange} required maxLength={56} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm text-gray-900 placeholder-gray-400" placeholder="G..." />
+                    <h2 className="text-2xl font-black text-gray-900 dark:text-white tracking-tight">Yeni Sertifika</h2>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Blockchain üzerine kalıcı veri işleyin.</p>
                 </div>
 
-                <button type="submit" disabled={isLoading} className="w-full bg-gray-900 text-white font-medium py-2.5 rounded-lg hover:bg-gray-800 transition-colors disabled:opacity-50">
-                    {isLoading ? "İşleniyor..." : "Sertifika Talebi Oluştur"}
-                </button>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 gap-6">
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 ml-1">Eğitim/Sertifika Adı</label>
+                            <input
+                                type="text"
+                                name="title"
+                                value={formData.title}
+                                onChange={handleChange}
+                                required
+                                className="w-full px-5 py-4 bg-gray-50 dark:bg-white/5 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500/20 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 transition-all font-medium"
+                                placeholder="Örn: İleri Düzey React Eğitimi"
+                            />
+                        </div>
 
-                {message && (
-                    <div className={`p-3 rounded-lg text-sm font-medium break-all ${message.type === 'success' ? 'bg-green-100 text-green-800' : message.type === 'error' ? 'bg-red-100 text-red-800' : 'bg-blue-100 text-blue-800'}`}>
-                        {message.text}
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 ml-1">Veren Kurum</label>
+                            <input
+                                type="text"
+                                name="issuerName"
+                                value={formData.issuerName}
+                                onChange={handleChange}
+                                required
+                                className="w-full px-5 py-4 bg-gray-50 dark:bg-white/5 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500/20 text-gray-900 dark:text-white placeholder-gray-400 Transition-all font-medium"
+                                placeholder="Örn: Tech Academy"
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 ml-1">Alıcı Adı Soyadı</label>
+                            <input
+                                type="text"
+                                name="recipientName"
+                                value={formData.recipientName}
+                                onChange={handleChange}
+                                required
+                                className="w-full px-5 py-4 bg-gray-50 dark:bg-white/5 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500/20 text-gray-900 dark:text-white placeholder-gray-400 transition-all font-medium"
+                                placeholder="Örn: Ali Yılmaz"
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <label className="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400 dark:text-gray-500 ml-1">Alıcı Cüzdan Adresi</label>
+                            <input
+                                type="text"
+                                name="recipientWallet"
+                                value={formData.recipientWallet}
+                                onChange={handleChange}
+                                required
+                                maxLength={56}
+                                className="w-full px-5 py-4 bg-gray-50 dark:bg-white/5 border-none rounded-2xl focus:ring-2 focus:ring-indigo-500/20 text-gray-900 dark:text-white placeholder-gray-400 font-mono text-xs transition-all tracking-wider"
+                                placeholder="G..."
+                            />
+                        </div>
                     </div>
-                )}
-            </form>
+
+                    <div className="pt-4">
+                        <button
+                            type="submit"
+                            disabled={isLoading}
+                            className="w-full group/btn relative flex items-center justify-center py-5 bg-indigo-600 hover:bg-indigo-700 text-white font-black uppercase tracking-widest text-xs rounded-2xl transition-all shadow-lg shadow-indigo-500/25 active:scale-[0.98] disabled:opacity-50"
+                        >
+                            <span className="relative flex items-center gap-2">
+                                {isLoading ? (
+                                    <>
+                                        <svg className="animate-spin h-4 w-4" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+                                        </svg>
+                                        İsleniyor...
+                                    </>
+                                ) : (
+                                    <>
+                                        Yayınla & Kazı
+                                        <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                        </svg>
+                                    </>
+                                )}
+                            </span>
+                        </button>
+                    </div>
+
+                    {message && (
+                        <div className={`p-4 rounded-2xl text-[11px] font-bold uppercase tracking-wider animate-in fade-in zoom-in-95 duration-300 ${message.type === 'success' ? 'bg-green-500/10 text-green-600 border border-green-500/20' :
+                                message.type === 'error' ? 'bg-red-500/10 text-red-600 border border-red-500/20' :
+                                    'bg-indigo-500/10 text-indigo-600 border border-indigo-500/20'
+                            }`}>
+                            <div className="flex items-start gap-2">
+                                <span className="shrink-0 mt-0.5">{message.type === 'success' ? '✅' : message.type === 'error' ? '❌' : 'ℹ️'}</span>
+                                <span className="break-all">{message.text}</span>
+                            </div>
+                        </div>
+                    )}
+                </form>
+            </div>
         </div>
     );
 }
