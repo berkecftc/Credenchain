@@ -2,6 +2,9 @@
 
 Credenchain is a decentralized application (dApp) built with Next.js that enables the creation, management, and verification of digital certificates on the Stellar/Soroban blockchain. By combining an intuitive web interface with smart contract technology, Credenchain ensures that certificates are immutable, verifiable, and securely stored both on-chain and in a PostgreSQL database.
 
+**Live Site:** [https://credenchains.vercel.app](https://credenchains.vercel.app)
+
+
 ## Features
 - **Blockchain Anchoring:** Issue digital certificates directly to the Stellar blockchain via Soroban smart contracts.
 - **Wallet Integration:** Seamless connection with the Freighter wallet for signing transactions securely.
