@@ -1,0 +1,25 @@
+[package]
+name = "soroban_cert"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+# Mühendislik Notu: Kontratımızın WebAssembly (WASM) olarak derlenebilmesi için 
+# C-uyumlu dinamik kütüphane (cdylib) formatını kullanmak zorundayız.
+crate-type = ["cdylib"]
+
+[dependencies]
+# Soroban SDK: Stellar ağında kontrat yazmamızı sağlayan ana kütüphane
+soroban-sdk = "22.0.0"
+
+[profile.release]
+# Performans Optimizasyonu: WASM dosya boyutunu küçültmek için gereksiz kodları atar.
+# Blockchain'de dosya boyutu maliyet demektir.
+opt-level = "z"
+overflow-checks = true
+debug = 0
+strip = "symbols"
+debug-assertions = false
+panic = "abort"
+codegen-units = 1
+lto = true
